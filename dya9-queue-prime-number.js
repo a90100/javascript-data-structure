@@ -48,3 +48,33 @@ class Queue {
     return result
   }
 }
+
+function primesUpToN(n) {
+  let qq = new Queue();
+  let primes = [];
+  let q2 = new Queue();
+
+  for (let i = 2; i < n; i++) {
+    qq.enqueue(i);
+  }
+
+  // 當qq裡面還有任何數字，就不斷執行下去
+  while (qq.size >= 1) {
+    let prime = qq.dequeue();
+    primes.push(prime);
+
+    while (qq.size > 0) {
+      let num = qq.dequeue()
+      if (num % prime !== 0) {
+        q2.enqueue(num)
+      }
+    }
+
+    let temp = qq
+    qq = q2
+    q2 = temp
+  }
+  return primes
+}
+
+console.log(primesUpToN(121))
