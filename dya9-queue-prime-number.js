@@ -9,6 +9,7 @@ class Queue {
   constructor() {
     this.front = null
     this.tail = null
+    this.size = 0
   }
 
   isEmpty() {
@@ -16,6 +17,7 @@ class Queue {
   }
 
   enqueue(value) {
+    this.size++
     let node = new QueueNode(value)
     if (this.isEmpty()) {
       this.front = node
@@ -29,6 +31,7 @@ class Queue {
   }
 
   dequeue() {
+    this.size--
     let result = this.front.data
     if (this.isEmpty()) {
       return null
@@ -44,15 +47,4 @@ class Queue {
 
     return result
   }
-}
-
-let qq = new Queue()
-qq.enqueue("A")
-qq.enqueue("B")
-qq.enqueue("C")
-qq.enqueue("D")
-qq.enqueue("E")
-
-while (!qq.isEmpty()) {
-  console.log(qq.dequeue())
 }
