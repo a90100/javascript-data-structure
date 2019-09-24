@@ -11,10 +11,6 @@ class Tree {
     this.root = null
   }
 
-  // collect() {
-  //   return this._collect(this.root, []) // 
-  // }
-
   // 使用遞迴去遍歷樹節點
   collect(current = this.root, nodes = []) {
     if (current === null) {
