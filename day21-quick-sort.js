@@ -1,6 +1,6 @@
 // 交换
 function swap(arr, a, b) {
-  var temp = arr[a];
+  let temp = arr[a];
   arr[a] = arr[b];
   arr[b] = temp;
 }
