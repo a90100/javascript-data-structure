@@ -16,17 +16,18 @@ class HashTable {
   }
 
   set(key,value){
-    let index = this._hash(key);
-    // 如果之前該索引沒有被用過，就幫該索引值加上空陣列，ex: index = 2, [ , , [], ....]
+    let index = this._hash(key); // 產生要儲存資料的 address
+    // 如果之前該索引沒有被用過，就幫該索引值加上空陣列，ex: index = 2, keyMap 變成 [ , , [], ....]
     if (!this.keyMap[index]) this.keyMap[index] = [];
     this.keyMap[index].push([key, value]);
   }
 
-  get(key){
+  get(key){ // 這裡使用了 O(n)，但是其實簡化了實際 get 函式在 Hash table 中的實作，實作中可以降到 O(1)
     let index = this._hash(key);
     if(this.keyMap[index]) {
-      // 查找二維陣列
+      // 查找二維陣列，例如當前 map 為 [ , , [['Harry', 172], ['Ray', 180]]]
       for(let i = 0; i < this.keyMap[index].length; i++){
+        // this.keyMap[index][i][0] 為 Harry or Ray，看 i 多少
         if(this.keyMap[index][i][0] === key) {
           return this.keyMap[index][i][1];
         }
@@ -35,7 +36,7 @@ class HashTable {
     return undefined;
   }
 
-  // 取得所有 keys
+  // 取得所有 keys，這種寫法能避免 hash collision
   keys(){
     let keysArr = [];
     for(let i = 0; i < this.keyMap.length; i++){

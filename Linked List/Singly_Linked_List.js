@@ -89,7 +89,7 @@ class SinglyLinkedList {
 
     var newNode = new Node(val);
     var prev = this.get(index - 1); // 取得要插入位置的前一個節點
-    var temp = prev.next;
+    var temp = prev.next; // 取得要插入位置的後一個節點
     prev.next = newNode; // 前面的節點指向新節點
     newNode.next = temp;
     this.length++;

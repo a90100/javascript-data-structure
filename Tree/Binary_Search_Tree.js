@@ -83,6 +83,15 @@ class BinarySearchTree {
     }
     return data;
   }
+  BFSRecursive(queue, data) {
+    if (!queue.length) return data;
+
+    let currentNode = this.queue.shift();
+    if (currentNode.left) queue.push(currentNode.left);
+    if (currentNode.right) queue.push(currentNode.right);
+
+    return this.BFSRecursive(queue, data);
+  }
   DFSPreOrder() {
     const data = [];
 
@@ -125,3 +134,4 @@ tree.insert(11);
 tree.insert(2);
 tree.insert(16);
 tree.insert(7);
+tree.BFSRecursive([tree.root], []);
